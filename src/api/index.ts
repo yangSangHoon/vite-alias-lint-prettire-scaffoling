@@ -1,32 +1,34 @@
 import { get, post, put, del } from './client';
 import { projectsMapper, projectMapper } from './mapper/projectMapper';
 import { ProjectListRequestModel, ProjectRequestModel } from './model/request/projectRequest';
+import { ProjectModel } from './model/response/projectResponse';
 
-export const basePath = `https://${process.env.SERVER_TYPE}.wanted.co.kr/gigs/`;
+export const basePath = `https://${import.meta.env.SERVER_TYPE}.wanted.co.kr/gigs/`;
 export const baseUrl = `https://nextweek.wanted.co.kr/gigs/api-v2/admin/`;
 
-export const getProjects = async (params: ProjectListRequestModel) => {
-    const response = await get(`${baseUrl}projects`, params);
+const projectURL = `${baseUrl}project`;
 
-    return projectsMapper(response.data);
-};
-
-export const getProject = async (id: number) => {
-    const response = await get(`${baseUrl}project/${id}`);
+export const getProject = async (id: number): Promise<ProjectModel> => {
+    const response = await get(`${projectURL}/${id}`);
     return projectMapper(response.data);
 };
 
 export const postProject = async (data: ProjectRequestModel) => {
-    const response = await post(`${baseUrl}project`, data);
+    const response = await post(`${projectURL}`, data);
     return response.data;
 };
 
 export const putProject = async (data: ProjectRequestModel) => {
-    const response = await put(`${baseUrl}project/${data.id}`, data);
+    const response = await put(`${projectURL}/${data.id}`, data);
     return response.data;
 };
 
 export const deletetProject = async (id: number) => {
-    const response = await del(`${baseUrl}project/${id}`);
+    const response = await del(`${projectURL}/${id}`);
     return response.data;
+};
+
+export const getProjects = async (params: ProjectListRequestModel) => {
+    const response = await get(`${projectURL}s`, params);
+    return projectsMapper(response.data);
 };

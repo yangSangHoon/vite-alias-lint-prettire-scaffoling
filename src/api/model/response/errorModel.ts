@@ -1,9 +1,9 @@
 export interface BaseError {
-  code: string;
+    code: string;
 }
 
 export interface ServerError {
-  error: string;
-  message: string;
-  statusCode: number;
+    error: string;
+    message: string;
+    statusCode: number;
 }

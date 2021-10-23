@@ -1,4 +1,5 @@
 export interface ProjectModel {
-  id: number;
-  title: string;
+    id?: number;
+    title?: string;
+    like: boolean;
 }

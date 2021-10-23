@@ -1,5 +1,5 @@
 const QueryId = {
-  Project: "project",
+    Project: 'project'
 };
 
 export default QueryId;
